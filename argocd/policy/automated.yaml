@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-automated
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://10.10.13.200:6443
+  project: default
+  source:
+    repoURL: "http://gitlab.infra.com/yilei/argocd-test.git"
+    path: "quickstart"
+    targetRevision: "master"
+  syncPolicy:
+    automated: {}
+
+
+
+

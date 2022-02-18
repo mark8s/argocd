@@ -1,0 +1,110 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: "2022-01-22T02:05:41Z"
+  generation: 40
+  name: argocd-test
+  namespace: argocd
+  resourceVersion: "5921886"
+  selfLink: /apis/argoproj.io/v1alpha1/namespaces/argocd/applications/argocd-test
+  uid: 3df9dfa4-2786-4d3a-a809-aa656a36fc3d
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: quickstart
+    repoURL: http://gitlab.infra.com/yilei/argocd-test.git
+    targetRevision: master
+  syncPolicy:
+    automated: {}
+status:
+  health:
+    status: Healthy
+  history:
+    - deployStartedAt: "2022-01-22T02:07:32Z"
+      deployedAt: "2022-01-22T02:07:33Z"
+      id: 0
+      revision: 8f0969b465ef8590c5b254fb1a7c740b0a55fb0f
+      source:
+        path: quickstart
+        repoURL: http://gitlab.infra.com/yilei/argocd-test.git
+        targetRevision: master
+    - deployStartedAt: "2022-01-22T02:13:50Z"
+      deployedAt: "2022-01-22T02:13:51Z"
+      id: 1
+      revision: d0c9ed43c0bcb005b25c6877fa403e8bfaa03ee8
+      source:
+        path: quickstart
+        repoURL: http://gitlab.infra.com/yilei/argocd-test.git
+        targetRevision: master
+  operationState:
+    finishedAt: "2022-01-22T02:13:51Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        automated: true
+      retry:
+        limit: 5
+      sync:
+        revision: d0c9ed43c0bcb005b25c6877fa403e8bfaa03ee8
+    phase: Succeeded
+    startedAt: "2022-01-22T02:13:50Z"
+    syncResult:
+      resources:
+        - group: ""
+          hookPhase: Running
+          kind: Service
+          message: service/myapp unchanged
+          name: myapp
+          namespace: default
+          status: Synced
+          syncPhase: Sync
+          version: v1
+        - group: apps
+          hookPhase: Running
+          kind: Deployment
+          message: deployment.apps/myapp configured
+          name: myapp
+          namespace: default
+          status: Synced
+          syncPhase: Sync
+          version: v1
+      revision: d0c9ed43c0bcb005b25c6877fa403e8bfaa03ee8
+      source:
+        path: quickstart
+        repoURL: http://gitlab.infra.com/yilei/argocd-test.git
+        targetRevision: master
+  reconciledAt: "2022-01-22T02:53:18Z"
+  resources:
+    - health:
+        status: Healthy
+      kind: Service
+      name: myapp
+      namespace: default
+      status: Synced
+      version: v1
+    - group: apps
+      health:
+        status: Healthy
+      kind: Deployment
+      name: myapp
+      namespace: default
+      status: Synced
+      version: v1
+  sourceType: Directory
+  summary:
+    images:
+      - registry.cn-shanghai.aliyuncs.com/public-namespace/myapp:v2
+  sync:
+    comparedTo:
+      destination:
+        namespace: default
+        server: https://kubernetes.default.svc
+      source:
+        path: quickstart
+        repoURL: http://gitlab.infra.com/yilei/argocd-test.git
+        targetRevision: master
+    revision: d0c9ed43c0bcb005b25c6877fa403e8bfaa03ee8
+    status: Synced
