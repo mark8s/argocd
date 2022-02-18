@@ -14,8 +14,7 @@ spec:
     targetRevision: "master"
   syncPolicy:
     automated:
-      selfHeal: true
-
+      prune: true
 
 
 
