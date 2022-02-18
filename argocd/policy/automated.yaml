@@ -13,7 +13,8 @@ spec:
     path: "quickstart"
     targetRevision: "master"
   syncPolicy:
-    automated: {}
+    automated:
+      selfHeal: true
 
 
 
