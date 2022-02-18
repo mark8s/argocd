@@ -17,6 +17,15 @@ argocd的同步策略
 如果我们想要将使用cmd修改的k8s资源的状态恢复到git中指定的期望状态，就要设置 `selfHeal: true` 。
 
 
+- allowEmpty 
+  
+允许argocd指定git path中的资源文件为空(默认值:false)。当 `allowEmpty: false`时，如果指定git path中的资源文件为空，那么会报错。
+
+错误如：`ComparisonError rpc error: code = Unknown desc = quickstart: app path does not exist`
+
+这时配置`allowEmpty: true` 就ok了。
+
+
 
 
 
