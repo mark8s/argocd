@@ -3,7 +3,7 @@ kind: Job
 metadata:
   name: postdeal-when-sync-healthy
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook: PostSync
 spec:
   template:
     spec:
@@ -13,6 +13,6 @@ spec:
           command:
             - "echo"
           args:
-            - "sync done! $(date)"
+            - "sync done!"
       restartPolicy: Never
   backoffLimit: 2
