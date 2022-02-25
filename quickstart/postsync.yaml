@@ -13,6 +13,6 @@ spec:
           command:
             - "echo"
           args:
-            - "sync done!"
+            - "sync done! $(date)"
       restartPolicy: Never
   backoffLimit: 2
