@@ -27,7 +27,29 @@ argocd的同步策略
 
 这里有个坑，路径下的资源为空，但是这个路径必须是要存在的。在git中，如果git某个文件夹下面没有任何文件，那么这个文件夹都会不存在了，所以测试的时候，可以放一个跟k8s无关的文件，保证path存在。
 
-
+####修改healthy判断逻辑
+如修改ingress的healthy判断逻辑
+```yaml
+apiVersion: v1
+data:
+  resource.customizations.health.networking.k8s.io_Ingress: |
+    hs = {}
+    hs.status = "Healthy"
+    return hs
+  resource.customizations.useOpenLibs.networking.k8s.io_Ingress: "true"
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"ConfigMap","metadata":{"annotations":{},"labels":{"app.kubernetes.io/name":"argocd-cm","app.kubernetes.io/part-of":"argocd"},"name":"argocd-cm","namespace":"argocd"}}
+  creationTimestamp: "2022-02-25T02:46:17Z"
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+  name: argocd-cm
+  namespace: argocd
+  selfLink: /api/v1/namespaces/argocd/configmaps/argocd-cm
+```
 
 
 
